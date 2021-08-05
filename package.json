@@ -1,0 +1,40 @@
+{
+  "name": "@alvis/preset-gatsby",
+  "version": "0.0.0",
+  "private": true,
+  "description": "An opinionated presetter preset for a Gatsby project",
+  "keywords": [
+    "presetter",
+    "preset",
+    "gatsby"
+  ],
+  "homepage": "https://github.com/alvis/preset-gatsby#readme",
+  "bugs": {
+    "url": "https://github.com/alvis/preset-gatsby/issues"
+  },
+  "license": "MIT",
+  "author": "Alvis HT Tang <alvis@hilbert.space>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvis/preset-gatsby.git"
+  },
+  "scripts": {
+    "prepare": "presetter bootstrap && run prepare",
+    "build": "run build",
+    "lint": "run lint",
+    "coverage": "run coverage",
+    "test": "run test --",
+    "watch": "run watch --"
+  },
+  "peerDependencies": {
+    "presetter": "^3.0.0"
+  },
+  "devDependencies": {
+    "presetter": "^3.0.0",
+    "presetter-preset": "^3.0.0"
+  },
+  "dependencies": {
+  }
+}
