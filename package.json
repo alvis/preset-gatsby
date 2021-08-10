@@ -29,12 +29,29 @@
     "watch": "run watch --"
   },
   "peerDependencies": {
-    "presetter": "^3.0.0"
+    "@types/react-helmet": "^6.0.0",
+    "@types/webpack-bundle-analyzer": "^3.0.0",
+    "presetter": "^3.0.0",
+    "presetter-preset-react": "^3.0.0",
+    "presetter-preset-strict": "^3.0.0",
+    "presetter-preset-web": "^3.0.0",
+    "gatsby": "^3.0.0",
+    "gatsby-link": "^3.0.0",
+    "gatsby-plugin-graphql-codegen": "^3.0.0",
+    "gatsby-plugin-image": "^1.0.0",
+    "gatsby-plugin-manifest": "^3.0.0",
+    "gatsby-plugin-mdx": "^2.9.0",
+    "gatsby-plugin-postcss": "^4.0.0",
+    "gatsby-plugin-react-helmet": "^4.0.0",
+    "gatsby-plugin-sharp": "^3.0.0",
+    "gatsby-react-router-scroll": "^4.0.0",
+    "gatsby-source-filesystem": "^3.0.0",
+    "gatsby-transformer-sharp": "^3.0.0",
+    "webpack": "^5.0.0",
+    "webpack-bundle-analyzer": "^4.0.0"
   },
   "devDependencies": {
     "presetter": "^3.0.0",
-    "presetter-preset": "^3.0.0"
-  },
-  "dependencies": {
+    "presetter-preset-strict": "^3.0.0"
   }
 }

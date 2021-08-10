@@ -1,0 +1,2 @@
+build: ts-node-cwd --transpile-only -- ./node_modules/.bin/gatsby build --verbose
+start: ts-node-cwd --transpile-only -- ./node_modules/.bin/gatsby develop

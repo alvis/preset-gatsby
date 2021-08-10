@@ -15,7 +15,12 @@
 
 /* istanbul ignore file */
 
+import { resolve } from 'path';
+
 import type { PresetAsset } from 'presetter';
+
+// paths to the template directory
+const TEMPLATES = resolve(__dirname, '..', 'templates');
 
 /**
  * get the list of templates provided by this preset
@@ -23,5 +28,18 @@ import type { PresetAsset } from 'presetter';
  */
 export default async function (): Promise<PresetAsset> {
   return {
+    extends: [
+      'presetter-preset-strict',
+      'presetter-preset-web',
+      'presetter-preset-react',
+    ],
+    scripts: resolve(TEMPLATES, 'scripts.yaml'),
+    supplementaryConfig: {
+      gitignore: ['/.cache', '/public', '/webpack-*-report.html'],
+    },
+    variable: {
+      source: 'src',
+      output: 'public',
+    },
   };
 }
