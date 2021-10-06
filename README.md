@@ -45,7 +45,7 @@
 
 - `gatsby-link`
 - `gatsby-plugin-graphql-codegen`
-- `gatsby-plugin-image`
+- ~~`gatsby-plugin-image`~~ NOTE: gatsby-plugin-image is not an ordinary plugin but a mix of plugin and react components. Install it as a dependency of your project instead.
 - `gatsby-plugin-manifest`
 - `gatsby-plugin-mdx`
 - `gatsby-plugin-postcss`
