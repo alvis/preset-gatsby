@@ -34,9 +34,12 @@ export default async function (): Promise<PresetAsset> {
       'presetter-preset-strict',
     ],
     scripts: resolve(TEMPLATES, 'scripts.yaml'),
-    supplementaryConfig: {
-      gitignore: ['/.cache', '/public', '/webpack-*-report.html'],
+    template: {
+      /* eslint-disable @typescript-eslint/naming-convention */
+      '.gitignore': ['/.cache', '/public', '/webpack-*-report.html'].join('\n'),
+      /* eslint-enable @typescript-eslint/naming-convention */
     },
+    supplementaryIgnores: ['.npmignore'],
     variable: {
       source: 'src',
       output: 'public',
