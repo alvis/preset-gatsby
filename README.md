@@ -92,7 +92,7 @@ Implement your business logic under `source` and prepare tests under `spec`.
  ├─ .lintstagedrc.json
  ├─ .npmignore
  ├─ .prettierrc.json
- ├─ .preseterrc.json
+ ├─ .presetterrc.json
  ├─ node_modules
  ├─ source
  │   ├─ <folders>
