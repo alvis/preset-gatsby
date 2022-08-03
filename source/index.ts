@@ -29,9 +29,9 @@ const TEMPLATES = resolve(__dirname, '..', 'templates');
 export default async function (): Promise<PresetAsset> {
   return {
     extends: [
-      'presetter-preset-strict',
       'presetter-preset-web',
       'presetter-preset-react',
+      'presetter-preset-strict',
     ],
     scripts: resolve(TEMPLATES, 'scripts.yaml'),
     supplementaryConfig: {

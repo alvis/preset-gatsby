@@ -9,83 +9,42 @@
  *
  * @author    Alvis HT Tang <alvis@hilbert.space>
  * @license   MIT
- * @copyright Copyright (c) 2021 - All Rights Reserved.
+ * @copyright Copyright (c) 2020 - All Rights Reserved.
  * -------------------------------------------------------------------------
  */
 
-import { readdir } from 'fs/promises';
+import { readdirSync } from 'fs';
 import { resolve } from 'path';
+import { loadDynamicMap, resolveContext } from 'presetter';
 
-import configure from '#index';
+import getPresetAsset from '#index';
 
-const mockLoadYAML = jest.fn(async (_template: string) => ({}));
-const mockLoadText = jest.fn(async (_template: string) => '');
-jest.mock('presetter-preset-react', () => ({
+jest.mock('path', () => ({
   __esModule: true,
-  ...jest.requireActual('presetter-preset-react'),
-  default: jest.fn(() => ({
-    links: {
-      '.config': 'config',
-    },
-    scripts: {
-      script: 'script',
-    },
-  })),
-  createLinker: jest.fn(() => ({
-    json: async (template: string) => {
-      await mockLoadYAML(template);
-      return template;
-    },
-    list: async (template: string) => {
-      await mockLoadText(template);
-      return template;
-    },
-    text: async (template: string) => {
-      await mockLoadText(template);
-      return template;
-    },
-  })),
-  loadYAML: jest.fn().mockImplementation((template) => mockLoadYAML(template)),
-  loadText: jest.fn().mockImplementation((template) => mockLoadText(template)),
+  ...jest.requireActual('path'),
+  resolve: jest.fn(jest.requireActual('path').resolve),
 }));
 
-describe('fn:configure', () => {
-  beforeEach(jest.clearAllMocks);
-  const target = { name: 'project', root: '/path/to/project' };
-
-  it('export preset configuration', async () => {
-    const expected = {
-      links: {
-        '.config': 'config',
-      },
-      scripts: {
-        script: 'script',
-      },
-    };
-
-    expect(
-      await configure({
-        config: {},
-        target,
-      }),
-    ).toEqual(expected);
-  });
-
+describe('fn:getPresetAsset', () => {
   it('use all templates', async () => {
-    await configure({ target, config: {} });
+    const asset = await getPresetAsset();
+    const context = await resolveContext({
+      graph: [{ name: 'preset', asset, nodes: [] }],
+      context: {
+        target: { name: 'preset', root: '/', package: {} },
+        custom: { preset: 'preset' },
+      },
+    });
 
-    const files = await readdir(resolve(__dirname, '..', 'templates'));
-    const yamlFiles = files.filter((file) => file.endsWith('.yaml'));
-    const textFiles = files.filter((file) => !file.endsWith('.yaml'));
+    // load all potential dynamic content
+    await loadDynamicMap(asset.supplementaryConfig, context);
+    await loadDynamicMap(asset.template, context);
 
-    expect(mockLoadText).toHaveBeenCalledTimes(textFiles.length);
-    for (const file of textFiles) {
-      expect(mockLoadText).toHaveBeenCalledWith(file);
-    }
+    const TEMPLATES = resolve(__dirname, '..', 'templates');
+    const allTemplates = await readdirSync(TEMPLATES);
 
-    expect(mockLoadYAML).toHaveBeenCalledTimes(yamlFiles.length);
-    for (const file of yamlFiles) {
-      expect(mockLoadYAML).toHaveBeenCalledWith(file.replace(/\.yaml$/, ''));
+    for (const path of allTemplates) {
+      expect(resolve).toBeCalledWith(TEMPLATES, path);
     }
   });
 });
