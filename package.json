@@ -29,7 +29,6 @@
     "watch": "run watch --"
   },
   "peerDependencies": {
-    "@types/react-helmet": "^6.0.0",
     "@types/webpack-bundle-analyzer": "^4.0.0",
     "presetter": "^3.4.0",
     "presetter-preset-react": "^3.4.0",
@@ -37,7 +36,6 @@
     "presetter-preset-web": "^3.4.0",
     "gatsby": "^4.0.0",
     "gatsby-link": "^4.0.0",
-    "gatsby-plugin-graphql-codegen": "^3.0.0",
     "gatsby-plugin-manifest": "^4.0.0",
     "gatsby-plugin-mdx": "^3.0.0",
     "gatsby-plugin-postcss": "^5.0.0",
