@@ -1,6 +1,6 @@
 {
   "preset": "presetter-preset-strict",
   "config": {
-    "npmignore": ["!/templates/**"]
+    "npmignore": ["!/configs/**", "!/templates/**"]
   }
 }

@@ -21,6 +21,7 @@ import type { PresetAsset } from 'presetter';
 
 // paths to the template directory
 const TEMPLATES = resolve(__dirname, '..', 'templates');
+const CONFIGS = resolve(__dirname, '..', 'configs');
 
 /**
  * get the list of templates provided by this preset
@@ -38,6 +39,9 @@ export default async function (): Promise<PresetAsset> {
       /* eslint-disable @typescript-eslint/naming-convention */
       '.gitignore': ['/.cache', '/public', '/webpack-*-report.html'].join('\n'),
       /* eslint-enable @typescript-eslint/naming-convention */
+    },
+    supplementaryConfig: {
+      tsconfig: resolve(CONFIGS, 'tsconfig.yaml'),
     },
     supplementaryIgnores: ['.npmignore'],
     variable: {
